@@ -2,7 +2,6 @@ package com.wyz.activiti7.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -33,10 +32,6 @@ import org.activiti.engine.runtime.ProcessInstanceQuery;
 import org.activiti.engine.task.Task;
 import org.activiti.image.ProcessDiagramGenerator;
 import org.activiti.image.impl.DefaultProcessDiagramGenerator;
-import org.apache.batik.transcoder.TranscoderException;
-import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.batik.transcoder.TranscoderOutput;
-import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -449,11 +444,6 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 	 * @version 1.0
 	 */
 	@RequestMapping(value="/toShowTask")
-	/*
-	 * @RequestMapping(value = "/toShowTask")
-	 * 
-	 * @ResponseBody
-	 */
 	public String toShowTask(HttpServletRequest request) {
 		/*
 		 * 获取请求参数
@@ -550,26 +540,6 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 			StreamUtils.closeInputStream(imageStream);
 		}
 	}
-	
-	public static void convertToPng(InputStream imageStream, OutputStream outputStream)  
-	        throws TranscoderException, IOException {  
-	    try {  
-	        PNGTranscoder t = new PNGTranscoder();  
-	        TranscoderInput input = new TranscoderInput(imageStream);  
-	        TranscoderOutput output = new TranscoderOutput(outputStream);  
-	        t.transcode(input, output);  
-	        outputStream.flush();  
-	    } finally {  
-	        if (outputStream != null) {  
-	            try {  
-	                outputStream.close();  
-	            } catch (IOException e) {  
-	                e.printStackTrace();  
-	            } 
-	        }  
-	    }  
-	}  
-	
 	
 	@RequestMapping("getPiImage")
     public void xx(String processInstanceId, HttpServletResponse response)
