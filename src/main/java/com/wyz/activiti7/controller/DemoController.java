@@ -480,50 +480,11 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 		return "/task";
 	}
 	
-
-
-	/**
-	 * <p>输出图像</p>
-	 * @param response 响应实体
-	 * @param bpmnModel 图像对象
-	 * @param flowIds 已执行的线集合
-	 * @param executedActivityIdList void 已执行的节点ID集合
-	 * @author FRH
-	 * @time 2018年12月10日上午11:23:01
-	 * @version 1.0
-	 */
-	private void outputImg2(HttpServletResponse response, BpmnModel bpmnModel, List<String> flowIds, List<String> executedActivityIdList) {
-		InputStream imageStream = null;
-		try {
-			//imageStream = processDiagramGenerator.generateDiagram(bpmnModel, executedActivityIdList, flowIds, "宋体", "微软雅黑", "黑体", true, "jpg");
-			imageStream = processDiagramGenerator.generateDiagram(bpmnModel, executedActivityIdList, flowIds, "宋体", "微软雅黑", "黑体", true);
-			//imageStream = processDiagramGenerator.generateDiagram(bpmnModel, "宋体", "微软雅黑", "黑体");
-			// 输出资源内容到相应对象
-			 //InputStream imageStream2 = getClass().getResourceAsStream("png");
-//			 PNGTranscoder t = new PNGTranscoder();  
-//		        TranscoderInput input = new TranscoderInput(new ByteArrayInputStream(bytes));  
-//		        TranscoderOutput output = new TranscoderOutput(outputStream);  
-//		        t.transcode(input, output);  
-			
-			byte[] b = new byte[1024];
-			int len;
-			while ((len = imageStream.read(b, 0, 1024)) != -1) {
-				response.getOutputStream().write(b, 0, len);
-			}
-			response.getOutputStream().flush();
-		}catch(Exception e) {
-			logger.error("流程图输出异常！", e);
-		} finally { // 流关闭
-			StreamUtils.closeInputStream(imageStream);
-		}
-	}
-	
 	
 	private void outputImg(HttpServletResponse response, BpmnModel bpmnModel, List<String> flowIds, List<String> executedActivityIdList) {
 		InputStream imageStream = null;
 		
 		try {
-			ServletOutputStream ss = response.getOutputStream();
 			imageStream = processDiagramGenerator.generateDiagram(bpmnModel, executedActivityIdList, flowIds, "宋体", "微软雅黑", "黑体", true,"png");
 			response.setHeader("Content-Type","image/svg+xml");
 			byte[] b = new byte[1024];
@@ -532,8 +493,6 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 				response.getOutputStream().write(b, 0, len);
 			}
 			response.getOutputStream().flush();
-			
-			//convertToPng(imageStream,ss);
 		}catch(Exception e) {
 			logger.error("流程图输出异常！", e);
 		} finally { // 流关闭
