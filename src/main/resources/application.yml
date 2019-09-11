@@ -1,0 +1,52 @@
+# 服务配置
+server:
+  display-name: actdemo
+  port: 8085
+  
+# Spring相关配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/activiti?characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true    
+    
+    # SQLException: XAER_INVAL: Invalid arguments (or unsupported command)问题
+    xa:
+      properties:
+        pinGlobalTxToPhysicalConnection: true
+        useServerPrepStmts: true
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    mode: HTML
+    encoding: utf-8
+    # 禁用缓存
+    cache: false
+    content-type: text/html
+    check-template-location: true
+  application:
+    # 注册应用名
+    name: actdemo
+  mvc:
+    # 静态资源路径
+    static-path-pattern: /static/**
+    view: 
+       prefix: /
+   ## 响应页面默认后缀
+       suffix: .html
+  # 参考配置https://www.cnblogs.com/liaojie970/p/8857710.html
+
+  activiti:
+    # 自动建表
+   # database-schema: activity
+    database-schema-update: true
+    history-level: full
+    db-history-used: true
+
+# 关闭activiti登录验证
+security:
+  basic:
+    enabled: false
