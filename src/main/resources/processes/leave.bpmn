@@ -2,7 +2,11 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="Examples" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="Examples" id="m1539757531057" name="">
   <process id="leave" name="leave" isExecutable="true" isClosed="false" processType="None">
     <startEvent id="theStart"></startEvent>
-    <userTask id="empLeave" name=" 员工申请"></userTask>
+    <userTask id="empLeave" name=" 员工申请">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${myTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
     <sequenceFlow id="flow1" sourceRef="theStart" targetRef="empLeave"></sequenceFlow>
     <userTask id="superiorApproval " name="上级审核"></userTask>
     <sequenceFlow id="flow2" sourceRef="empLeave" targetRef="superiorApproval "></sequenceFlow>
@@ -40,7 +44,7 @@
         <omgdi:waypoint x="456.0" y="367.0"></omgdi:waypoint>
         <omgdi:waypoint x="560.0" y="367.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="456.0" y="367.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="24.0" x="456.0" y="367.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">

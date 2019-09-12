@@ -133,6 +133,7 @@ private static final Logger logger = LoggerFactory.getLogger(DemoController.clas
 		 */
 		Map<String,Object> map = new HashMap<String,Object>();
         map.put("jobNumber","A1001");
+        map.put("users","dfdsfsdf");
         map.put("busData","bus data");
 		ProcessInstance instance = runtimeService.startProcessInstanceByKey(instanceKey, map);//使用流程定义的key启动流程实例，key对应helloworld.bpmn文件中id的属性值，使用key值启动，默认是按照最新版本的流程定义启动
 		
