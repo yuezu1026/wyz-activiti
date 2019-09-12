@@ -53,7 +53,7 @@ public class MyProTest {
     }
     
     /**查询当前人的个人任务*/
-    //@Test
+    @Test
     public void findTask(){
     	TaskService taskService = activitiRule.getTaskService();
         String assignee = "PTM";
@@ -62,6 +62,7 @@ public class MyProTest {
                 .list();
         if(CollectionUtils.isNotEmpty(list)) {
             for(Task task:list){
+            	System.out.println("key: "+task.getTaskDefinitionKey());
                 System.out.println("任务ID:"+task.getId());
                 System.out.println("任务名称:"+task.getName());
                 System.out.println("任务的创建时间:"+task.getCreateTime());
@@ -98,7 +99,7 @@ public class MyProTest {
     
     
     /**查询当前人的组任务*/
-    @Test
+    //@Test
     public void findTaskGroup(){
     	TaskService taskService = activitiRule.getTaskService();
         String assignee = "PTM";
@@ -110,6 +111,7 @@ public class MyProTest {
                 .list();
         if(CollectionUtils.isNotEmpty(list)) {
             for(Task task:list){
+            	System.out.println(task.getTaskDefinitionKey());
                 System.out.println("任务ID:"+task.getId());
                 System.out.println("任务名称:"+task.getName());
                 System.out.println("任务的创建时间:"+task.getCreateTime());

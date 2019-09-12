@@ -55,5 +55,3 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml 
   type-aliases-package: com.wyz.activiti7.model
 
-logging:
-  level: debug
