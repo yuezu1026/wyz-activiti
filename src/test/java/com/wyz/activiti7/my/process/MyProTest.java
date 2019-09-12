@@ -18,7 +18,7 @@ import org.junit.Test;
 public class MyProTest {
 	
 	@Rule
-	 private ActivitiRule activitiRule = new ActivitiRule();
+	 public ActivitiRule activitiRule = new ActivitiRule();
 	
 	
 	//@Test
@@ -89,7 +89,7 @@ public class MyProTest {
     public void completeTask(){
     	TaskService taskService = activitiRule.getTaskService();
         //任务ID
-        String taskId = "10008";
+        String taskId = "12504";
         HashMap<String, Object> variables=new HashMap<>();
         variables.put("days", 1);//userKey在上文的流程变量中指定了
         taskService.complete(taskId,variables);
@@ -103,10 +103,12 @@ public class MyProTest {
     	TaskService taskService = activitiRule.getTaskService();
         String assignee = "PTM";
         List<Task> list = taskService.createTaskQuery()//创建任务查询对象
-//                .taskCandidateUser("ZJ")//指定组任务查询
-                .taskAssignee(assignee)
+               //.taskCandidateUser("ZJ")//指定组任务查询
+               //.taskCandidateUser("HR")//指定组任务查询
+               .taskCandidateGroup("HR")
+               // .taskAssignee(assignee)
                 .list();
-        if(list!=null && list.size()>0){
+        if(CollectionUtils.isNotEmpty(list)) {
             for(Task task:list){
                 System.out.println("任务ID:"+task.getId());
                 System.out.println("任务名称:"+task.getName());
