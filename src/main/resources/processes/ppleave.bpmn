@@ -4,8 +4,8 @@
     <startEvent id="startevent1" name="Start"></startEvent>
     <endEvent id="endevent1" name="End"></endEvent>
     <userTask id="usertask1" name="部门经理审批"></userTask>
-    <businessRuleTask id="businessruletask1" name="天数判断" activiti:ruleVariablesInput="${leave}" activiti:rules="leave1,leave2" activiti:resultVariable="reason"></businessRuleTask>
-    <serviceTask id="servicetask1" name="获取变量" activiti:class="com.lala.service.DroolsService"></serviceTask>
+    <businessRuleTask id="businessruletask1" name="day" activiti:ruleVariablesInput="${leave}" activiti:rules="leave1,leave2" activiti:resultVariable="reason"></businessRuleTask>
+    <serviceTask id="servicetask1" name="获取变量" activiti:class="com.wyz.activiti7.service.DroolsService"></serviceTask>
     <userTask id="usertask2" name="HR审批"></userTask>
     <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="usertask1"></sequenceFlow>
     <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="businessruletask1"></sequenceFlow>
