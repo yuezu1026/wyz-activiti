@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<activiti-dependencies.version>7.1.0.M2</activiti-dependencies.version>
-		<drools.version>7.26.0.Final</drools.version>
+		<drools.version>7.60.0.Final</drools.version>
 	</properties>
 
 	<repositories>
